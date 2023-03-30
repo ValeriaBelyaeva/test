@@ -12,11 +12,24 @@ desk = [[4 for i in range(8)] for i in range(11)]
 
 flRunning = True
 pause=0
+briсk_type = -1
+briсk_cl, briсk_st = 0, 0
+FPS = 1        # число кадров в секунду
+clock = pygame.time.Clock()
+
 while flRunning:
+    if briсk_type == -1:
+        briсk_type = random.randint(0, 6)
+        briсk_cl = 0
+        briсk_st = 2 # random.randint(0, 6)
+
+
     for j in range(11):
         for i in range(8):
             color = colors[desk[j][i]]
+            #chek_ij_in_bkick()
             pygame.draw.rect(screen,color,(50+i*int(side*1.2),150+j*int(side*1.2),side,side))
+
     pygame.display.update()
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
@@ -31,4 +44,6 @@ while flRunning:
                     screen.fill(colors[0])
                 #else: pause.fill(())
 
-    fps_clock = pygame.time.Clock()
+
+    clock.tick(FPS)
+    print(clock)
